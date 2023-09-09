@@ -6,6 +6,11 @@ const userRoutes = require("./Routes/users");
 const LoginRoutes = require("./Routes/login");
 const ChemicalRoutes=require("./Routes/Chemical")
 const ClientRoutes = require("./Routes/Client");
+const machineRoutes = require("./Routes/Machine");
+const SendAllDataRoutes = require("./Routes/SendReportData");
+const SendGradeDataRoutes=require("./Routes/SendGradeData")
+
+
 const GoogleLoginRoutes = require("./Routes/GoogleLogin");
 
 
@@ -20,6 +25,12 @@ app.use("/login", LoginRoutes);
 app.use("/googlelogin", GoogleLoginRoutes);
 app.use("/chemical", ChemicalRoutes);
 app.use("/client", ClientRoutes);
+app.use("/machine", machineRoutes);
+app.use("/getalldata", SendAllDataRoutes);
+app.use("/getgradedata", SendGradeDataRoutes);
+
+
+
 
 
 
