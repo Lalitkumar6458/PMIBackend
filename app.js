@@ -5,6 +5,8 @@ const PORT = process.env.PORT || 5000;
 const userRoutes = require("./Routes/users");
 const LoginRoutes = require("./Routes/login");
 const ChemicalRoutes=require("./Routes/Chemical")
+const ReportRoutes = require("./Routes/Report");
+
 const ClientRoutes = require("./Routes/Client");
 const machineRoutes = require("./Routes/Machine");
 const SendAllDataRoutes = require("./Routes/SendReportData");
@@ -24,6 +26,7 @@ app.use("/users", userRoutes);
 app.use("/login", LoginRoutes);
 app.use("/googlelogin", GoogleLoginRoutes);
 app.use("/chemical", ChemicalRoutes);
+app.use("/report", ReportRoutes);
 app.use("/client", ClientRoutes);
 app.use("/machine", machineRoutes);
 app.use("/getalldata", SendAllDataRoutes);
