@@ -11,6 +11,7 @@ const ClientRoutes = require("./Routes/Client");
 const machineRoutes = require("./Routes/Machine");
 const SendAllDataRoutes = require("./Routes/SendReportData");
 const SendGradeDataRoutes=require("./Routes/SendGradeData")
+const LatterPad=require("./Routes/LatterPad")
 
 
 const GoogleLoginRoutes = require("./Routes/GoogleLogin");
@@ -31,6 +32,7 @@ app.use("/client", ClientRoutes);
 app.use("/machine", machineRoutes);
 app.use("/getalldata", SendAllDataRoutes);
 app.use("/getgradedata", SendGradeDataRoutes);
+app.use("/latterpad",LatterPad)
 
 
 
