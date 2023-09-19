@@ -6,6 +6,7 @@ const ReportSchema = new mongoose.Schema(
     grade: { type: String, required: true },
     chemical: { type: Array, required: true },
     clientId: { type: String, required: true },
+    clientName:{type: String, required: true},
     agencyName: { type: String, required: true },
     location: { type: String, required: true },
     date:{ type: Date, required: true },

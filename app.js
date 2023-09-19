@@ -12,6 +12,8 @@ const machineRoutes = require("./Routes/Machine");
 const SendAllDataRoutes = require("./Routes/SendReportData");
 const SendGradeDataRoutes=require("./Routes/SendGradeData")
 const LatterPad=require("./Routes/LatterPad")
+const SendReport = require("./Routes/SendReport");
+
 
 
 const GoogleLoginRoutes = require("./Routes/GoogleLogin");
@@ -33,11 +35,7 @@ app.use("/machine", machineRoutes);
 app.use("/getalldata", SendAllDataRoutes);
 app.use("/getgradedata", SendGradeDataRoutes);
 app.use("/latterpad",LatterPad)
-
-
-
-
-
+app.use("/sendreport", SendReport);
 
 
 app.listen(PORT, () => {
