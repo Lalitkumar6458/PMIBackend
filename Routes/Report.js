@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const Report = require("../Database/Modals/Report");
 const authenticateToken = require("../Helper/authenticateToken ");
+const Chemical = require("../Database/Modals/Chemical");
+const Client = require("../Database/Modals/Client");
 
 router.post("/", authenticateToken, async (req, res) => {
   console.log(req.body, "req.body");
@@ -25,10 +27,19 @@ router.get("/", authenticateToken, async (req, res) => {
   console.log("userId", userId);
   try {
     // Find posts by userId
-    const ClientData = await Report.find({ userId });
+        const ClientLen = await Client.find({ userId });
+        const Chemicallen = await Chemical.find({ userId });
+    const ClientData = await Report.find({ userId }).sort({ _id: -1 });
 
     if (ClientData.length > 0) {
-      res.status(200).json({ data: ClientData });
+      res.status(200).json({
+        data: ClientData,
+        dashbordData: {
+          ClientLen: ClientLen.length,
+          ChemicalLen: Chemicallen.length,
+          ReportLen: ClientData.length,
+        },
+      });
     } else {
       res
         .status(201)
