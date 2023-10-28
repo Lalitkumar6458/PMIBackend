@@ -26,7 +26,7 @@ router.get("/", authenticateToken, async (req, res) => {
   console.log("userId", userId);
   try {
     // Find posts by userId
-    const ClientData = await Client.find({ userId });
+    const ClientData = await Client.find({ userId }).sort({ _id: -1 });
 
     if (ClientData.length > 0) {
       res.status(200).json({ data: ClientData });

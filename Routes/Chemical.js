@@ -30,7 +30,7 @@ router.get("/",authenticateToken, async (req, res) => {
   console.log("userId", userId);
   try {
     // Find posts by userId
-    const gradeData = await Chemical.find({ userId });
+    const gradeData = await Chemical.find({ userId }).sort({ _id: -1 });
 
     if (gradeData.length > 0) {
       res.status(200).json({ data: gradeData });
