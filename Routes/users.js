@@ -5,6 +5,11 @@ const ConnectMongo = require("../Database/conn");
 const authenticateToken = require("../Helper/authenticateToken ");
 
 const bcrypt = require("bcrypt");
+const Client = require("../Database/Modals/Client");
+const Chemical = require("../Database/Modals/Chemical");
+const LatterPad = require("../Database/Modals/LatterPad");
+const Machine = require("../Database/Modals/Machine");
+const Report = require("../Database/Modals/Report");
 
 // Create a new user
 
@@ -118,6 +123,38 @@ router.put("/", authenticateToken, async (req, res) => {
     res.status(200).json({ message: "User updated successfully" });
   } catch (error) {
     res.status(500).json({ error: "Error updating user" });
+  }
+});
+router.delete("/", async (req, res) => {
+  console.log(req.body, "req.body");
+  try {
+    const { userId } = req.body;
+
+    // Find the user by ID
+    const user = await User.findById(userId);
+
+    // Check if the user exists
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Delete reports associated with the user
+    await Report.deleteMany({ userId });
+
+    // Delete clients associated with the user
+    await Client.deleteMany({ userId });
+
+    // Delete chemicals associated with the user
+    await Chemical.deleteMany({ userId });
+   await LatterPad.deleteMany({ userId });
+   await Machine.find({ userId })
+    // Delete the user
+    await user.deleteOne();
+
+    return res.status(200).json({ message: "User and associated data deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting user and associated data:", error);
+    return res.status(500).json({ error: "Internal server error" });
   }
 });
 

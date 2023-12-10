@@ -31,7 +31,7 @@ router.get("/", authenticateToken, async (req, res) => {
         const Chemicallen = await Chemical.find({ userId });
     const ClientData = await Report.find({ userId }).sort({ _id: -1 });
 
-    if (ClientData.length > 0) {
+    if (ClientData) {
       res.status(200).json({
         data: ClientData,
         dashbordData: {

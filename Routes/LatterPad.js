@@ -22,8 +22,7 @@ router.post("/", authenticateToken, async (req, res) => {
 
 router.get("/", authenticateToken, async (req, res) => {
     const { userId } = req.query;
-    console.log("userId", userId);
-    try {
+      try {
       // Find posts by userId
       const LstterPadData = await LatterPad.find({ userId });
   
@@ -41,10 +40,11 @@ router.get("/", authenticateToken, async (req, res) => {
   });
   router.put("/", authenticateToken, async (req, res) => {
     const { id,text1,text2,text3,agencyName,officeNo,mobileNo,email,heading,address,description,logo,formatId} = req.body;
-//   console.log(req.body)
+  console.log(id,'id')
     try {
       // Find the user document based on the unique identifier (e.g., user ID)
       let latterpadData = await LatterPad.findById(id);
+      console.log(latterpadData,'latterpadData')
       const updateData=req.body
 
       if (!latterpadData) {
